@@ -23,7 +23,7 @@ You can assume that the messages are decodable. For example, '001' is not allowe
  * "1","2","3"==="ABC"
  */
  const LETTER_MAPPING: string[] = [
-    "-", // dummy letter to correctly set A === 1
+    "", // dummy letter to correctly set A === 1
     "A",
     "B",
     "C",
@@ -78,9 +78,9 @@ const decodeMessage = (message: string): string[] => {
     const firstSlice = message.slice(1);
     const secondSlice = message.slice(2);
 
-    const branchOne = decodeMessage(firstSlice).map(e => e === "" ? "" : `${firstCharacter}${e}`).filter(e => e !== "");
+    const branchOne = firstCharacter === "0" ? [] : decodeMessage(firstSlice).map(e => e === "" ? "" : `${firstCharacter}${e}`).filter(e => e !== "");
 
-    // if the 2nd character is not valid, we cannot use it and return nothing for this branch. 
+    // if the 2nd character is not valid, we cannot use it and return nothing for this branch.
     const branchTwo = !secondCharacter ? [] : decodeMessage(secondSlice).map(e => e === "" ? "" : `${secondCharacter}${e}`).filter(e => e !== "");
 
     // we iterate through all of the returned letters, appending the relevant decoded letter to the start of the result set for each returned letter
@@ -95,9 +95,10 @@ console.log(`test 1 result: ${decoded_message1}`);
 const message2 = "76548";
 const decoded_message2 = decodeMessage(message2);
 
-console.log(`test 1 result: ${decoded_message2}`);
+console.log(`test 2 result: ${decoded_message2}`);
 
-const message3 = "123857391232";
+const message3 = "192011491912122"; //STANISLAV
 const decoded_message3 = decodeMessage(message3);
 
-console.log(`test 1 result: ${decoded_message3}`);
+console.log(`test 3 result: ${decoded_message3}`);
+console.log(`test 3 result contains STANISLAV ?: ${decoded_message3.some(e => e === "STANISLAV")}`)
