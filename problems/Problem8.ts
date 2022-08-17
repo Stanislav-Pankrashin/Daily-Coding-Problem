@@ -14,8 +14,13 @@ For example, the following tree has 5 unival subtrees:
  1   1
  */
 
- class BinaryTree {
+class BinaryTree {
     root: BinaryTreeNode;
+
+    constructor(value: number) {
+        const root = new BinaryTreeNode(value);
+        this.root = root;
+    }
 
     countUnivalSubtrees(): number {
         // count subtrees on root
@@ -27,7 +32,10 @@ class BinaryTreeNode {
     childOne: BinaryTreeNode | null;
     childTwo: BinaryTreeNode | null;
 
-    constructor(public value: number) {}
+    constructor(public value: number) {
+        this.childOne = null;
+        this.childTwo = null;
+    }
 
     countUnivalSubtrees(): {continue: boolean, number: number} {
 
@@ -64,14 +72,12 @@ class BinaryTreeNode {
  1   1
  */
 {
-    const tree1 = new BinaryTree();
-    const root = new BinaryTreeNode(0);
-    tree1.root = root;
+    const tree1 = new BinaryTree(0);
     
     const root_childOne = new BinaryTreeNode(1);
     const root_childTwo = new BinaryTreeNode(0);
-    root.childOne = root_childOne;
-    root.childTwo = root_childTwo;
+    tree1.root.childOne = root_childOne;
+    tree1.root.childTwo = root_childTwo;
     
     const root_childTwo_childOne = new BinaryTreeNode(1);
     const root_childTwo_childTwo = new BinaryTreeNode(0);
@@ -97,14 +103,12 @@ class BinaryTreeNode {
  */
 
 {
-    const tree1 = new BinaryTree();
-    const root = new BinaryTreeNode(0);
-    tree1.root = root;
+    const tree1 = new BinaryTree(0);
     
     const root_childOne = new BinaryTreeNode(1);
     const root_childTwo = new BinaryTreeNode(0);
-    root.childOne = root_childOne;
-    root.childTwo = root_childTwo;
+    tree1.root.childOne = root_childOne;
+    tree1.root.childTwo = root_childTwo;
 
     const root_childOne_childOne = new BinaryTreeNode(1);
     const root_childOne_childTwo = new BinaryTreeNode(1);
@@ -134,15 +138,13 @@ class BinaryTreeNode {
    1   1
  */
 
-   {
-    const tree1 = new BinaryTree();
-    const root = new BinaryTreeNode(0);
-    tree1.root = root;
+{
+    const tree1 = new BinaryTree(0);
     
     const root_childOne = new BinaryTreeNode(1);
     const root_childTwo = new BinaryTreeNode(0);
-    root.childOne = root_childOne;
-    root.childTwo = root_childTwo;
+    tree1.root.childOne = root_childOne;
+    tree1.root.childTwo = root_childTwo;
 
     const root_childOne_childOne = new BinaryTreeNode(1);
     const root_childOne_childTwo = new BinaryTreeNode(0);

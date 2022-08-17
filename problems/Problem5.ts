@@ -23,16 +23,20 @@ const cons = (a: number, b: number) => {
 
 type PairType = (f: (a: number, b: number) => number) => number;
 
-const car = (func: (f: (a: number, b: number) => number) => number): number => {
+const car = (func: PairType): number => {
     return func((a, b) => a);
 }
 
-const cdr = (func: (f: (a: number, b: number) => number) => number): number => {
+const cdr = (func: PairType): number => {
     return func((a, b) => b);
 }
 
-const test1 = car(cons(3, 4));
-const test2 = cdr(cons(3, 4));
+export const main = () => {
+    const test1 = car(cons(3, 4));
+    const test2 = cdr(cons(3, 4));
+    
+    console.log(`test1 pass: ${test1 === 3}`);
+    console.log(`test2 pass: ${test2 === 4}`);
+}
 
-console.log(`test1 pass: ${test1 === 3}`);
-console.log(`test2 pass: ${test2 === 4}`);
+main();

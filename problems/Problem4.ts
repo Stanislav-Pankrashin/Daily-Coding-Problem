@@ -28,10 +28,14 @@ const lowestMissingInteger = (array: number[]): number => {
     return nextInteger;
 };
 
-const test1 = lowestMissingInteger([3, 4, -1, 1]);
-const test2 = lowestMissingInteger([1, 2, 0]);
-const test3 = lowestMissingInteger([3, 4, -1, 1, 2, 6]);
+export const main = () => {
+    const test1 = lowestMissingInteger([3, 4, -1, 1]);
+    const test2 = lowestMissingInteger([1, 2, 0]);
+    const test3 = lowestMissingInteger([3, 4, -1, 1, 2, 6]);
+    
+    console.log(`test1 pass: ${test1 === 2}`);
+    console.log(`test2 pass: ${test2 === 3}`);
+    console.log(`test3 pass: ${test3 === 5}`);
+}
 
-console.log(`test1 pass: ${test1 === 2}`);
-console.log(`test2 pass: ${test2 === 3}`);
-console.log(`test3 pass: ${test3 === 5}`);
+main();

@@ -87,18 +87,20 @@ const decodeMessage = (message: string): string[] => {
     return [...branchOne, ...branchTwo];
 }
 
-const message1 = "111";
-const decoded_message1 = decodeMessage(message1);
-
-console.log(`test 1 result: ${decoded_message1}`);
-
-const message2 = "76548";
-const decoded_message2 = decodeMessage(message2);
-
-console.log(`test 2 result: ${decoded_message2}`);
-
-const message3 = "192011491912122"; //STANISLAV
-const decoded_message3 = decodeMessage(message3);
-
-console.log(`test 3 result: ${decoded_message3}`);
-console.log(`test 3 result contains STANISLAV ?: ${decoded_message3.some(e => e === "STANISLAV")}`)
+export const main = () => {
+    const message1 = "111";
+    const decoded_message1 = decodeMessage(message1);
+    
+    console.log(`test 1 result: ${decoded_message1}`);
+    
+    const message2 = "76548";
+    const decoded_message2 = decodeMessage(message2);
+    
+    console.log(`test 2 result: ${decoded_message2}`);
+    
+    const message3 = "192011491912122"; //STANISLAV
+    const decoded_message3 = decodeMessage(message3);
+    
+    console.log(`test 3 result: ${decoded_message3}`);
+    console.log(`test 3 result contains STANISLAV ?: ${decoded_message3.some(e => e === "STANISLAV")}`)
+}
