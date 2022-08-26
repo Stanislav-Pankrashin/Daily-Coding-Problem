@@ -10,14 +10,10 @@ const ProductNotAtIndex = (arr: number[]): number[] => {
     const forwardPointer: number[] = new Array<number>(arr.length).fill(0);
     const reversePointer: number[] = new Array<number>(arr.length).fill(0);
 
-    // reverse pointer
-    for (let i = arr.length - 1; i >= 0; i--) {
-        reversePointer[i] = (arr?.[i] ?? 1) * (reversePointer?.[i + 1] ?? 1);
-    }
-
-    // forward pointer
     for (let i = 0; i < arr.length; i++) {
         forwardPointer[i] = (arr?.[i] ?? 1) * (forwardPointer?.[i - 1] ?? 1);
+        const reversePointerIndex = arr.length - i - 1;
+        reversePointer[reversePointerIndex] = (arr?.[reversePointerIndex] ?? 1) * (reversePointer?.[reversePointerIndex + 1] ?? 1);
     }
 
     const result: number[] = new Array<number>(arr.length).fill(0);
