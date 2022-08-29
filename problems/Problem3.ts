@@ -43,21 +43,25 @@ const serialize = (tree: TreeNode): string => {
 };
 
 const deserialize = (tree: string): TreeNode => {
-    const iterator = tree.split(" ").entries();
+    const iterator = tree.split(" ").reverse();
 
-    const deserializeRecursive = (sequenceIterator: IterableIterator<[number, string]> ): TreeNode | null => {
-        const nextIter = sequenceIterator.next();
-
-        if (nextIter.done) {
+    const deserializeRecursive = (sequenceIterator: string[] ): TreeNode | null => {
+        if(sequenceIterator.length === 0) {
             return null;
         }
 
-        if (nextIter.value[1] === "#") {
+        const nextVal = sequenceIterator.pop();
+
+        if (!nextVal) {
+            return null;
+        }
+
+        if (nextVal === "#") {
             return null;
         }
 
         return new TreeNode(
-            nextIter.value[1],
+            nextVal,
             deserializeRecursive(sequenceIterator),
             deserializeRecursive(sequenceIterator),
         )
