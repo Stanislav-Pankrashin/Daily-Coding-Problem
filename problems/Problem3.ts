@@ -13,3 +13,63 @@ The following test should pass:
 node = Node('root', Node('left', Node('left.left')), Node('right'))
 assert deserialize(serialize(node)).left.left.val == 'left.left'
  */
+
+// the above class converted to Typescript
+class TreeNode {
+    constructor(
+        public val: string,
+        public left: TreeNode | null = null,
+        public right: TreeNode | null = null,
+    ) {}
+}
+
+const serialize = (tree: TreeNode): string => {
+    let output = "";
+
+    const serializeRecursive = (root: TreeNode | null) => {
+        if (root === null) {
+            output += " #";
+            return;
+        }
+
+        output += ` ${root.val}`;
+        serializeRecursive(root.left);
+        serializeRecursive(root.right);
+    };
+
+    serializeRecursive(tree);
+
+    return output.trim();
+};
+
+const deserialize = (tree: string): TreeNode => {
+    const iterator = tree.split(" ").entries();
+
+    const deserializeRecursive = (sequenceIterator: IterableIterator<[number, string]> ): TreeNode | null => {
+        const nextIter = sequenceIterator.next();
+
+        if (nextIter.done) {
+            return null;
+        }
+
+        if (nextIter.value[1] === "#") {
+            return null;
+        }
+
+        return new TreeNode(
+            nextIter.value[1],
+            deserializeRecursive(sequenceIterator),
+            deserializeRecursive(sequenceIterator),
+        )
+    };
+
+    return deserializeRecursive(iterator) as TreeNode;
+};
+
+const node = new TreeNode('root', new TreeNode('left', new TreeNode('left.left')), new TreeNode('right'));
+const serialized = serialize(node);
+const deserialized = deserialize(serialized);
+const assert = deserialized?.left?.left?.val == 'left.left';
+console.log(serialized);
+console.log(deserialized);
+console.log(assert)
