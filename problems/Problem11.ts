@@ -26,7 +26,6 @@ class Autocompleter {
                 if (this._partialWordsMap.has(hash)) {
                     const current = this._partialWordsMap.get(hash)!;
                     toSet = [...current, word];
-                    this._partialWordsMap.set(hash, [...current, word]);
                 }
 
                 this._partialWordsMap.set(hash, toSet);
