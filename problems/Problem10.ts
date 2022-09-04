@@ -113,7 +113,7 @@ const jobFunctionGenerator = (message: string): Function => {
 
 const scheduler = new Scheduler();
 
-const pid1 = scheduler.schedule(jobFunctionGenerator("Job 1"), "job 1", 1000);
+const pid1 = scheduler.schedule(jobFunctionGenerator("Job 1"), "job 1", 10000);
 const pid2 = scheduler.schedule(jobFunctionGenerator("Job 2"), "job 2", 2000);
 const pid3 = scheduler.schedule(jobFunctionGenerator("Job 3"), "job 3", 3000);
 const pid4 = scheduler.schedule(jobFunctionGenerator("Job 4"), "job 4", 4000);
