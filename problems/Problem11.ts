@@ -6,8 +6,6 @@ For example, given the query string de and the set of strings [dog, deer, deal],
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
  */
 
-import { createHash } from "node:crypto";
-
 class Autocompleter {
     private readonly _partialWordsMap = new Map<string, string[]>();
 
@@ -19,23 +17,21 @@ class Autocompleter {
             // for each character, hash and store the characters pointing to the whole word
             wordCharacters.forEach((character: string) => {
                 partialWord = partialWord + character;
-                const hash = createHash("sha256").update(partialWord).digest().toString();
 
                 let toSet: string[] = [word];
                 // if the hash already exists, update the existing entry
-                if (this._partialWordsMap.has(hash)) {
-                    const current = this._partialWordsMap.get(hash)!;
+                if (this._partialWordsMap.has(partialWord)) {
+                    const current = this._partialWordsMap.get(partialWord)!;
                     toSet = [...current, word];
                 }
 
-                this._partialWordsMap.set(hash, toSet);
+                this._partialWordsMap.set(partialWord, toSet);
             });
         });
     }
 
     autocomplete(str: string): string[] {
-        const hash = createHash("sha256").update(str).digest().toString();
-        return this._partialWordsMap.get(hash) ?? [];
+        return this._partialWordsMap.get(str) ?? [];
     }
 }
 
